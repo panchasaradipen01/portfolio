@@ -10,7 +10,7 @@ export default function Contact() {
       href: `tel:${contact.phone}`,
       icon: (
         <svg
-          className="w-8 h-8 text-green-600 dark:text-green-400 mb-3"
+          className="mb-3 h-8 w-8 text-green-600"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -71,23 +71,26 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
-      <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-10 text-center">
-        Get In Touch
-      </h2>
-      <div className="bg-white dark:bg-slate-800 rounded-2xl p-8 md:p-10 shadow-xl border border-slate-100 dark:border-slate-700">
-        <div className="grid md:grid-cols-3 gap-6 md:gap-8 text-center">
+    <section id="contact" className="section-shell section-block">
+      <div className="section-heading">
+        <div className="eyebrow">Contact</div>
+        <h2 className="font-heading text-4xl font-bold tracking-tight text-slate-950 md:text-5xl">
+          Let&apos;s build something thoughtful
+        </h2>
+      </div>
+      <div className="panel p-6 md:p-10">
+        <div className="grid gap-5 md:grid-cols-3 md:gap-6">
           {contactItems.map((item) => (
             <a
               key={item.type}
               href={item.href}
               target={item.type === "LinkedIn" ? "_blank" : undefined}
               rel={item.type === "LinkedIn" ? "noopener noreferrer" : undefined}
-              className="flex flex-col items-center p-6 md:p-8 rounded-xl hover:bg-gradient-to-br hover:from-blue-50 hover:to-indigo-50 dark:hover:from-blue-900/20 dark:hover:to-indigo-900/20 transition-all duration-300 hover:scale-105 hover:shadow-lg border border-transparent hover:border-blue-200 dark:hover:border-blue-800"
+              className="group rounded-[24px] border border-slate-900/10 bg-white/70 p-6 text-left transition duration-300 hover:-translate-y-1 hover:border-slate-900/20"
             >
-              <div className="mb-4">{item.icon}</div>
-              <p className="text-base md:text-lg text-slate-600 dark:text-slate-400 font-semibold mb-2">{item.type}</p>
-              <p className="text-sm md:text-base text-slate-900 dark:text-white font-medium">{item.value}</p>
+              <div className="mb-5">{item.icon}</div>
+              <p className="mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">{item.type}</p>
+              <p className="text-base font-medium text-slate-900 transition duration-300 group-hover:text-slate-700 md:text-lg">{item.value}</p>
             </a>
           ))}
         </div>

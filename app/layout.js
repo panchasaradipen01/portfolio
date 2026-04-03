@@ -1,20 +1,4 @@
-import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  display: "swap",
-  preload: true,
-});
-
-const poppins = Poppins({
-  variable: "--font-poppins",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
-  display: "swap",
-  preload: true,
-});
 
 export const metadata = {
   title: "Dipen Panchasara - Software Engineer | Frontend Developer | React JS Expert",
@@ -133,9 +117,7 @@ export default function RootLayout({ children }) {
           }}
         />
       </head>
-      <body
-        className={`${inter.variable} ${poppins.variable} antialiased`}
-      >
+      <body className="antialiased">
         {children}
       </body>
     </html>
