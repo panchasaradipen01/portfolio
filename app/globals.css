@@ -1,88 +1,135 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #0f172a;
-  --primary: #3b82f6;
-  --primary-dark: #2563eb;
-  --secondary: #8b5cf6;
-  --accent: #06b6d4;
+  --background: #f7f7f2;
+  --foreground: #161616;
+  --muted: #5d635b;
+  --panel: rgba(255, 255, 255, 0.72);
+  --panel-border: rgba(22, 22, 22, 0.08);
+  --ring: rgba(22, 22, 22, 0.08);
+  --accent: #1d4ed8;
+  --accent-soft: #dbeafe;
+  --font-inter: "Segoe UI", Arial, Helvetica, sans-serif;
+  --font-poppins: "Trebuchet MS", "Segoe UI", Arial, sans-serif;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
   --font-sans: var(--font-inter);
   --font-heading: var(--font-poppins);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0f172a;
-    --foreground: #f1f5f9;
-    --primary: #60a5fa;
-    --primary-dark: #3b82f6;
-  }
-}
-
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
 
 html {
   scroll-behavior: smooth;
-  font-size: 16px;
 }
 
 body {
-  background: var(--background);
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(191, 219, 254, 0.65), transparent 30%),
+    radial-gradient(circle at top right, rgba(254, 240, 138, 0.35), transparent 24%),
+    linear-gradient(180deg, #fbfbf8 0%, #f4f4ef 100%);
   color: var(--foreground);
-  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 1rem;
-  line-height: 1.6;
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-poppins), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-}
-
-h1 {
-  font-size: clamp(2.5rem, 5vw, 4rem);
-}
-
-h2 {
-  font-size: clamp(2rem, 4vw, 2.5rem);
-}
-
-h3 {
-  font-size: clamp(1.5rem, 3vw, 2rem);
-}
-
-p {
-  font-size: clamp(1rem, 1.5vw, 1.125rem);
-  line-height: 1.7;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-  transition: all 0.2s ease-in-out;
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(22, 22, 22, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(22, 22, 22, 0.035) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.35), transparent 80%);
 }
 
 button {
-  font-family: inherit;
   cursor: pointer;
 }
 
-@media (max-width: 768px) {
-  html {
-    font-size: 14px;
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -10px, 0);
+  }
+}
+
+@layer base {
+  ::selection {
+    background: rgba(29, 78, 216, 0.18);
+  }
+}
+
+@layer components {
+  .section-shell {
+    @apply mx-auto max-w-6xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-block {
+    @apply py-16 md:py-24;
+  }
+
+  .section-heading {
+    @apply mb-12 text-center;
+  }
+
+  .eyebrow {
+    @apply mb-4 inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/70 px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-slate-600 backdrop-blur;
+  }
+
+  .panel {
+    @apply rounded-[28px] border border-black/10 bg-white/75 shadow-[0_24px_80px_-40px_rgba(15,23,42,0.35)] backdrop-blur-xl;
+  }
+
+  .pill {
+    @apply inline-flex items-center rounded-full border border-slate-900/10 bg-white/85 px-3 py-1.5 text-sm font-medium text-slate-700 shadow-[0_8px_25px_-18px_rgba(15,23,42,0.35)] transition duration-300;
+  }
+
+  .grid-card {
+    @apply h-full rounded-[28px] border border-black/10 bg-white/75 p-6 shadow-[0_24px_80px_-40px_rgba(15,23,42,0.35)] backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:shadow-[0_28px_90px_-44px_rgba(15,23,42,0.45)] md:p-8;
+  }
+}
+
+@layer utilities {
+  .animate-fade-up {
+    animation: fade-up 0.7s ease-out both;
+  }
+
+  .animate-fade-up-delay {
+    animation: fade-up 0.7s ease-out 0.12s both;
+  }
+
+  .animate-fade-up-delay-2 {
+    animation: fade-up 0.7s ease-out 0.22s both;
+  }
+
+  .animate-drift {
+    animation: drift 7s ease-in-out infinite;
   }
 }

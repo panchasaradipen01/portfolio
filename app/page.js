@@ -10,15 +10,20 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+    <div className="relative min-h-screen overflow-hidden text-slate-900">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[34rem] bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.8),transparent_60%)]" />
+      <div className="pointer-events-none absolute left-[6%] top-28 h-28 w-28 rounded-full border border-white/60 bg-white/40 blur-2xl animate-drift" />
+      <div className="pointer-events-none absolute right-[8%] top-[28rem] h-40 w-40 rounded-full bg-blue-200/25 blur-3xl animate-drift" />
       <Navigation />
-      <Hero />
-      <About />
-      <Skills />
-      <Experience />
-      <Education />
-      <Projects />
-      <Contact />
+      <main className="relative z-10">
+        <Hero />
+        <About />
+        <Skills />
+        <Experience />
+        <Education />
+        <Projects />
+        <Contact />
+      </main>
       <Footer />
     </div>
   );

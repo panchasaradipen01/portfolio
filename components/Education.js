@@ -4,23 +4,25 @@ export default function Education() {
   const { education } = resumeData;
 
   return (
-    <section id="education" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
-      <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-10 text-center">
-        Education
-      </h2>
-      <div className="bg-white dark:bg-slate-800 rounded-2xl p-8 md:p-10 shadow-xl border border-slate-100 dark:border-slate-700">
-        <div className="flex flex-col md:flex-row md:justify-between md:items-start">
+    <section id="education" className="section-shell section-block">
+      <div className="section-heading">
+        <div className="eyebrow">Education</div>
+        <h2 className="font-heading text-4xl font-bold tracking-tight text-slate-950 md:text-5xl">
+          Strong academic grounding in software systems
+        </h2>
+      </div>
+      <div className="panel p-6 md:p-10">
+        <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
           <div>
-            <h3 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-3">{education.degree}</h3>
-            <p className="text-lg md:text-xl text-blue-600 dark:text-blue-400 font-medium mt-2">{education.institution}</p>
-            <p className="text-base md:text-lg text-slate-600 dark:text-slate-400 mt-2">{education.university}</p>
-            <p className="text-base text-slate-500 dark:text-slate-500 mt-1">{education.location}</p>
+            <h3 className="font-heading text-2xl font-bold text-slate-950 md:text-3xl">{education.degree}</h3>
+            <p className="mt-3 text-lg font-medium text-slate-700 md:text-xl">{education.institution}</p>
+            <p className="mt-1 text-base text-slate-500">{education.location}</p>
           </div>
-          <div className="text-right mt-4 md:mt-0">
-            <p className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-2">
-              CPI: {education.cpi}
+          <div className="rounded-[24px] border border-slate-900/10 bg-white/70 px-5 py-4 md:text-right">
+            <p className="font-heading text-2xl font-bold text-slate-950 md:text-3xl">
+              CGPA: {education.cgpa}
             </p>
-            <p className="text-base md:text-lg text-slate-600 dark:text-slate-400 font-medium">
+            <p className="mt-2 text-base font-medium text-slate-600 md:text-lg">
               {education.startDate} - {education.endDate}
             </p>
           </div>

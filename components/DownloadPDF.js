@@ -232,21 +232,27 @@ export default function DownloadPDF() {
                   </div>
                 </div>
                 <div class="skill-category">
-                  <h4>Web Technologies</h4>
+                  <h4>Frontend</h4>
                   <div class="skill-tags">
-                    ${skills.webTechnologies.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
+                    ${skills.frontend.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
                   </div>
                 </div>
                 <div class="skill-category">
-                  <h4>CS Fundamentals</h4>
+                  <h4>Web</h4>
                   <div class="skill-tags">
-                    ${skills.csFundamentals.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
+                    ${skills.web.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
                   </div>
                 </div>
                 <div class="skill-category">
-                  <h4>Databases</h4>
+                  <h4>Testing</h4>
                   <div class="skill-tags">
-                    ${skills.databases.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
+                    ${skills.testing.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
+                  </div>
+                </div>
+                <div class="skill-category">
+                  <h4>Other</h4>
+                  <div class="skill-tags">
+                    ${skills.other.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
                   </div>
                 </div>
               </div>
@@ -299,11 +305,10 @@ export default function DownloadPDF() {
                 <div class="education-details">
                   <h3>${education.degree}</h3>
                   <p>${education.institution}</p>
-                  <p>${education.university}</p>
                   <p>${education.location}</p>
                 </div>
                 <div style="text-align: right;">
-                  <div style="font-size: 11px; font-weight: 600; color: #1e293b;">CPI: ${education.cpi}</div>
+                  <div style="font-size: 11px; font-weight: 600; color: #1e293b;">CGPA: ${education.cgpa}</div>
                   <div style="font-size: 9.5px; color: #64748b;">${education.startDate} - ${education.endDate}</div>
                 </div>
               </div>
@@ -341,7 +346,7 @@ export default function DownloadPDF() {
   return (
     <button
       onClick={handleDownloadPDF}
-      className="px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 shadow-lg hover:shadow-xl font-medium flex items-center gap-2"
+      className="inline-flex items-center gap-2 rounded-full border border-slate-900/10 bg-white/70 px-6 py-3 text-sm font-semibold text-slate-800 transition duration-300 hover:-translate-y-0.5 hover:border-slate-900/20"
       aria-label="Download Resume as PDF"
     >
       <svg
