@@ -5,6 +5,13 @@ import Lenis from "lenis";
 
 export default function SmoothScroll({ children }) {
   useEffect(() => {
+    // Skip smooth scroll on touch/mobile devices to preserve native hardware touch scrolling
+    const isTouchDevice = 
+      typeof window !== "undefined" && 
+      ("ontouchstart" in window || navigator.maxTouchPoints > 0 || window.matchMedia("(pointer: coarse)").matches || window.innerWidth < 1024);
+      
+    if (isTouchDevice) return;
+
     // Initialize Lenis smooth scroll
     const lenis = new Lenis({
       duration: 1.2,

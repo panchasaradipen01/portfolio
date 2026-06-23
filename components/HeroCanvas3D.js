@@ -20,10 +20,14 @@ export default function HeroCanvas3D() {
     const camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 100);
     camera.position.z = 15;
 
-    // Renderer setup
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    // Detect mobile and touch devices
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+    const isTouch = typeof window !== "undefined" && ("ontouchstart" in window || navigator.maxTouchPoints > 0 || window.matchMedia("(pointer: coarse)").matches);
+
+    // Renderer setup - Disable antialiasing on mobile to reduce GPU fill rate
+    const renderer = new THREE.WebGLRenderer({ antialias: !isMobile, alpha: true });
     renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(isMobile ? 1 : Math.min(window.devicePixelRatio, 2));
     container.appendChild(renderer.domElement);
 
     // Particle texture helper (glowing circular particle)
@@ -44,8 +48,8 @@ export default function HeroCanvas3D() {
 
     const particleTexture = createCircleTexture();
 
-    // Geometry creation
-    const particleCount = 1800;
+    // Geometry creation - Optimize particle density for mobile devices (600 vs 1800)
+    const particleCount = isMobile ? 600 : 1800;
     const geometry = new THREE.BufferGeometry();
     const positions = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);
@@ -127,8 +131,11 @@ export default function HeroCanvas3D() {
       mouse.targetY = 0;
     };
 
-    container.addEventListener("mousemove", handleMouseMove);
-    container.addEventListener("mouseleave", handleMouseLeave);
+    // Only listen to mouse movements on non-touch devices (avoids main-thread overhead on mobile touch drag)
+    if (!isTouch) {
+      container.addEventListener("mousemove", handleMouseMove);
+      container.addEventListener("mouseleave", handleMouseLeave);
+    }
 
     // Clock for time reference
     const clock = new THREE.Clock();
@@ -201,7 +208,7 @@ export default function HeroCanvas3D() {
       camera.updateProjectionMatrix();
 
       renderer.setSize(w, h);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setPixelRatio(isMobile ? 1 : Math.min(window.devicePixelRatio, 2));
     };
 
     window.addEventListener("resize", handleResize);
@@ -210,8 +217,10 @@ export default function HeroCanvas3D() {
     return () => {
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener("resize", handleResize);
-      container.removeEventListener("mousemove", handleMouseMove);
-      container.removeEventListener("mouseleave", handleMouseLeave);
+      if (!isTouch) {
+        container.removeEventListener("mousemove", handleMouseMove);
+        container.removeEventListener("mouseleave", handleMouseLeave);
+      }
       
       if (container.contains(renderer.domElement)) {
         container.removeChild(renderer.domElement);
