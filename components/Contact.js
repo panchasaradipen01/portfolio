@@ -1,4 +1,8 @@
+"use client";
+
 import { resumeData } from "@/data/resume";
+import { motion } from "framer-motion";
+import ScrollReveal from "./ScrollReveal";
 
 export default function Contact() {
   const { contact } = resumeData.personalInfo;
@@ -10,7 +14,7 @@ export default function Contact() {
       href: `tel:${contact.phone}`,
       icon: (
         <svg
-          className="mb-3 h-8 w-8 text-green-600"
+          className="mb-3 h-8 w-8 text-teal-600"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -47,7 +51,7 @@ export default function Contact() {
             fill="#34A853"
           />
           <path
-            d="M5.455 4.64L3.927 3.493C2.309 2.28 0 3.434 0 5.457v13.909c0 .904.732 1.636 1.636 1.636h3.819V11.73L12 16.64V9.548L5.455 4.64z"
+            d="M5.455 4.64L3.927 3.493C2.309 2.28 0 3.434 0 5.457v13.909c0 .904.732 1.636 1.636 1.636h-3.819V11.73L12 16.64V9.548L5.455 4.64z"
             fill="#FBBC04"
           />
         </svg>
@@ -68,34 +72,81 @@ export default function Contact() {
         </svg>
       ),
     },
+    {
+      type: "LeetCode",
+      value: "Coding profile",
+      href: contact.leetcode,
+      icon: (
+        <svg className="mb-3 h-8 w-8 text-amber-500" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M13.483 0a1.25 1.25 0 0 0-.87.365L5.258 7.58a6.643 6.643 0 0 0 0 9.397l4.022 3.947a1.25 1.25 0 1 0 1.75-1.786l-4.022-3.947a4.143 4.143 0 0 1 0-5.854l7.356-7.214A1.25 1.25 0 0 0 13.483 0Z" />
+          <path d="M10.516 23.635a1.25 1.25 0 0 1-.88-2.136l7.357-7.215a4.143 4.143 0 0 0 0-5.853l-4.024-3.948a1.25 1.25 0 1 1 1.75-1.786l4.024 3.948a6.643 6.643 0 0 1 0 9.397l-7.356 7.214a1.245 1.245 0 0 1-.871.379Z" />
+          <path d="M8.75 13.25a1.25 1.25 0 1 1 0-2.5h8.5a1.25 1.25 0 1 1 0 2.5h-8.5Z" />
+        </svg>
+      ),
+    },
   ];
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 25 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { type: "spring", stiffness: 200, damping: 18 },
+    },
+  };
 
   return (
     <section id="contact" className="section-shell section-block">
-      <div className="section-heading">
-        <div className="eyebrow">Contact</div>
-        <h2 className="font-heading text-4xl font-bold tracking-tight text-slate-950 md:text-5xl">
-          Let&apos;s build something thoughtful
-        </h2>
-      </div>
-      <div className="panel p-6 md:p-10">
-        <div className="grid gap-5 md:grid-cols-3 md:gap-6">
-          {contactItems.map((item) => (
-            <a
-              key={item.type}
-              href={item.href}
-              target={item.type === "LinkedIn" ? "_blank" : undefined}
-              rel={item.type === "LinkedIn" ? "noopener noreferrer" : undefined}
-              className="group rounded-[24px] border border-slate-900/10 bg-white/70 p-6 text-left transition duration-300 hover:-translate-y-1 hover:border-slate-900/20"
-            >
-              <div className="mb-5">{item.icon}</div>
-              <p className="mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">{item.type}</p>
-              <p className="text-base font-medium text-slate-900 transition duration-300 group-hover:text-slate-700 md:text-lg">{item.value}</p>
-            </a>
-          ))}
+      <ScrollReveal direction="up" duration={0.8}>
+        <div className="section-heading">
+          <div className="eyebrow">Contact</div>
+          <h2 className="font-heading text-4xl font-bold tracking-tight text-slate-950 md:text-5xl">
+            Let&apos;s build something thoughtful
+          </h2>
         </div>
-      </div>
+      </ScrollReveal>
+
+      <ScrollReveal direction="up" delay={0.15} duration={0.8}>
+        <div className="panel p-6 md:p-10 bg-white/70 backdrop-blur-md">
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid gap-5 md:grid-cols-2 xl:grid-cols-4 md:gap-6"
+          >
+            {contactItems.map((item) => (
+              <motion.a
+                key={item.type}
+                href={item.href}
+                target={item.type === "LinkedIn" || item.type === "LeetCode" ? "_blank" : undefined}
+                rel={item.type === "LinkedIn" || item.type === "LeetCode" ? "noopener noreferrer" : undefined}
+                variants={itemVariants}
+                whileHover={{ y: -6, scale: 1.02, boxShadow: "0 20px 40px -15px rgba(15,23,42,0.12)" }}
+                className="group rounded-[24px] border border-slate-900/10 bg-white/80 p-6 text-left transition-colors duration-300 hover:border-slate-900/20 shadow-sm"
+              >
+                <div className="mb-5 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 origin-left">
+                  {item.icon}
+                </div>
+                <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-slate-400">{item.type}</p>
+                <p className="text-base font-semibold text-slate-900 transition-colors duration-350 group-hover:text-teal-700 md:text-lg">
+                  {item.value}
+                </p>
+              </motion.a>
+            ))}
+          </motion.div>
+        </div>
+      </ScrollReveal>
     </section>
   );
 }
-

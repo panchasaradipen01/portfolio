@@ -3,19 +3,19 @@ export const resumeData = {
     name: "Dipen Panchasara",
     title: "React.js Developer",
     experience: "2+ Years of Experience",
-    tagline: "React.js | Next.js | TypeScript | Performance Optimization",
+    tagline: "React.js | Next.js | TypeScript | Tailwind CSS",
+    location: "Ahmedabad, India",
+    availability: "Open to frontend opportunities",
     contact: {
       phone: "+91 9714241758",
       email: "panchasaradipen01@gmail.com",
       linkedin: "https://www.linkedin.com/in/DipenPanchasara",
+      leetcode: "https://leetcode.com/",
     },
   },
   about: {
     summary:
-      "React.js Developer with 2+ years of experience in front-end development, specializing in " +
-      "building scalable web applications and user interface design using React.js, Next.js, and JavaScript. " +
-      "Experienced in Redux, REST API integration, and performance optimization with a strong track record " +
-      "of improving load time and enhancing user experience.",
+      "React.js Developer with 2+ years of experience in frontend development, specializing in scalable web applications, responsive UI design, and performance optimization using React.js, Next.js, TypeScript, and JavaScript. Strong expertise in Redux, REST API integration, reusable component architecture, and enhancing user experience through optimized application performance.",
   },
   skills: {
     languages: ["JavaScript", "TypeScript", "Python"],
@@ -23,19 +23,27 @@ export const resumeData = {
       "React.js",
       "Next.js",
       "Redux",
-      "Frontend Development",
-      "User Interface Design",
-    ],
-    web: [
       "HTML",
       "CSS",
       "SCSS",
-      "Web Applications",
+      "Tailwind CSS",
+    ],
+    web: [
+      "REST APIs",
+      "GraphQL",
       "Responsive Design",
+      "UI/UX Optimization",
     ],
     testing: ["Jest", "Mocha"],
-    tools: ["Git", "VS Code"],
-    other: ["REST APIs", "GraphQL", "Performance Optimization"],
+    tools: ["Git", "GitHub", "VS Code"],
+    other: ["Performance Optimization", "SEO Best Practices", "Agile Development"],
+    soft: [
+      "Problem Solving",
+      "Communication",
+      "Team Collaboration",
+      "Time Management",
+      "Adaptability",
+    ],
   },
   experience: [
     {
@@ -102,10 +110,15 @@ export const resumeData = {
   },
   projects: [
     {
-      name: "SellCord",
+      name: "SellCord - Web Application",
       description:
-        "Developed a product promotion web application using React.js and Redux with authentication, dynamic UI rendering, and an improved user experience through better component rendering and state updates.",
-      technologies: ["React.js", "Redux", "Authentication", "Dynamic UI", "User Interface Design"],
+        "Product promotion platform built with React.js and Redux, focused on authentication, dynamic UI rendering, and scalable frontend structure.",
+      responsibilities: [
+        "Developed a product promotion platform using React.js and Redux.",
+        "Implemented authentication, dynamic UI rendering, and scalable frontend architecture.",
+        "Improved user interaction through optimized state management and rendering.",
+      ],
+      technologies: ["React.js", "Redux", "Authentication", "Dynamic UI", "Scalable Architecture"],
     },
   ],
 };

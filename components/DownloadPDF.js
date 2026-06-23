@@ -205,6 +205,7 @@ export default function DownloadPDF() {
               <span>📧 ${personalInfo.contact.email}</span>
               <span>📱 ${personalInfo.contact.phone}</span>
               <span>🔗 ${personalInfo.contact.linkedin}</span>
+              ${personalInfo.contact.leetcode ? `<span>💻 ${personalInfo.contact.leetcode}</span>` : ""}
             </div>
           </div>
 
@@ -255,6 +256,14 @@ export default function DownloadPDF() {
                     ${skills.other.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
                   </div>
                 </div>
+                ${skills.soft ? `
+                <div class="skill-category">
+                  <h4>Soft Skills</h4>
+                  <div class="skill-tags">
+                    ${skills.soft.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
+                  </div>
+                </div>
+                ` : ''}
               </div>
             </div>
           </div>
@@ -366,4 +375,3 @@ export default function DownloadPDF() {
     </button>
   );
 }
-

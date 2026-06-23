@@ -1,16 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f7f7f2;
-  --foreground: #161616;
-  --muted: #5d635b;
-  --panel: rgba(255, 255, 255, 0.72);
-  --panel-border: rgba(22, 22, 22, 0.08);
-  --ring: rgba(22, 22, 22, 0.08);
-  --accent: #1d4ed8;
-  --accent-soft: #dbeafe;
-  --font-inter: "Segoe UI", Arial, Helvetica, sans-serif;
-  --font-poppins: "Trebuchet MS", "Segoe UI", Arial, sans-serif;
+  --background: #f6f1e8;
+  --foreground: #1d2433;
+  --muted: #596172;
+  --panel: rgba(255, 250, 243, 0.72);
+  --panel-border: rgba(29, 36, 51, 0.1);
+  --ring: rgba(29, 36, 51, 0.08);
+  --accent: #0f766e;
+  --accent-strong: #c2410c;
+  --accent-soft: rgba(15, 118, 110, 0.12);
+  --font-inter: "Avenir Next", "Segoe UI", Arial, Helvetica, sans-serif;
+  --font-poppins: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
 }
 
 @theme inline {
@@ -32,9 +33,10 @@ html {
 body {
   min-height: 100vh;
   background:
-    radial-gradient(circle at top left, rgba(191, 219, 254, 0.65), transparent 30%),
-    radial-gradient(circle at top right, rgba(254, 240, 138, 0.35), transparent 24%),
-    linear-gradient(180deg, #fbfbf8 0%, #f4f4ef 100%);
+    radial-gradient(circle at top left, rgba(15, 118, 110, 0.18), transparent 28%),
+    radial-gradient(circle at top right, rgba(194, 65, 12, 0.14), transparent 24%),
+    radial-gradient(circle at 20% 80%, rgba(29, 78, 216, 0.12), transparent 26%),
+    linear-gradient(180deg, #fbf7f0 0%, #f1e7d9 100%);
   color: var(--foreground);
   font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -47,9 +49,9 @@ body::before {
   inset: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(to right, rgba(22, 22, 22, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(22, 22, 22, 0.035) 1px, transparent 1px);
-  background-size: 72px 72px;
+    linear-gradient(to right, rgba(29, 36, 51, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(29, 36, 51, 0.04) 1px, transparent 1px);
+  background-size: 88px 88px;
   mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.35), transparent 80%);
 }
 
@@ -80,6 +82,54 @@ button {
   }
 }
 
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(0, -14px, 0) scale(1.03);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.35;
+  }
+
+  70% {
+    transform: scale(1.08);
+    opacity: 0.12;
+  }
+
+  100% {
+    transform: scale(1.16);
+    opacity: 0;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-120%);
+  }
+
+  100% {
+    transform: translateX(220%);
+  }
+}
+
+@keyframes orbit {
+  from {
+    transform: rotate(0deg) translateX(18px) rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg) translateX(18px) rotate(-360deg);
+  }
+}
+
 @layer base {
   ::selection {
     background: rgba(29, 78, 216, 0.18);
@@ -104,7 +154,7 @@ button {
   }
 
   .panel {
-    @apply rounded-[28px] border border-black/10 bg-white/75 shadow-[0_24px_80px_-40px_rgba(15,23,42,0.35)] backdrop-blur-xl;
+    @apply rounded-[30px] border border-[color:var(--panel-border)] bg-[color:var(--panel)] shadow-[0_28px_90px_-44px_rgba(15,23,42,0.38)] backdrop-blur-xl;
   }
 
   .pill {
@@ -112,7 +162,22 @@ button {
   }
 
   .grid-card {
-    @apply h-full rounded-[28px] border border-black/10 bg-white/75 p-6 shadow-[0_24px_80px_-40px_rgba(15,23,42,0.35)] backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:shadow-[0_28px_90px_-44px_rgba(15,23,42,0.45)] md:p-8;
+    @apply h-full rounded-[30px] border border-[color:var(--panel-border)] bg-[color:var(--panel)] p-6 shadow-[0_24px_80px_-40px_rgba(15,23,42,0.35)] backdrop-blur-xl transition duration-300 hover:-translate-y-1.5 hover:shadow-[0_34px_95px_-42px_rgba(15,23,42,0.42)] md:p-8;
+  }
+
+  .gradient-stroke {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .gradient-stroke::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.72) 40%, transparent 80%);
+    transform: translateX(-120%);
+    animation: shimmer 6s ease-in-out infinite;
+    pointer-events: none;
   }
 }
 
@@ -131,5 +196,17 @@ button {
 
   .animate-drift {
     animation: drift 7s ease-in-out infinite;
+  }
+
+  .animate-float-slow {
+    animation: float-slow 9s ease-in-out infinite;
+  }
+
+  .animate-pulse-ring {
+    animation: pulse-ring 3.4s ease-out infinite;
+  }
+
+  .animate-orbit {
+    animation: orbit 9s linear infinite;
   }
 }

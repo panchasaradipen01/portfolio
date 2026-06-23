@@ -1,8 +1,9 @@
 import "./globals.css";
+import SmoothScroll from "@/components/SmoothScroll";
 
 export const metadata = {
-  title: "Dipen Panchasara - Software Engineer | Frontend Developer | React JS Expert",
-  description: "Experienced Frontend Developer with 2+ years of expertise in React JS, Next.js, TypeScript, and JavaScript. Specialized in building scalable web applications, e-commerce platforms, and modern UI/UX solutions. Available for opportunities.",
+  title: "Dipen Panchasara - React.js Developer | Frontend Portfolio",
+  description: "React.js Developer with 2+ years of experience building scalable web applications, responsive UI, and performance-focused frontend systems with Next.js, TypeScript, and JavaScript.",
   keywords: [
     "Frontend Developer",
     "React JS Developer",
@@ -10,9 +11,7 @@ export const metadata = {
     "TypeScript Developer",
     "JavaScript Developer",
     "Web Developer",
-    "Software Engineer",
     "UI/UX Developer",
-    "React Native",
     "Frontend Engineer",
     "Ahmedabad Developer",
     "India Developer",
@@ -31,7 +30,7 @@ export const metadata = {
   },
   openGraph: {
     title: "Dipen Panchasara - Software Engineer | Frontend Developer",
-    description: "Experienced Frontend Developer with 2+ years of expertise in React JS, Next.js, TypeScript, and JavaScript.",
+    description: "React.js Developer with 2+ years of experience in scalable frontend systems, responsive UI, and performance optimization.",
     url: "https://dipenpanchasara.dev",
     siteName: "Dipen Panchasara Portfolio",
     locale: "en_US",
@@ -48,7 +47,7 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Dipen Panchasara - Software Engineer | Frontend Developer",
-    description: "Experienced Frontend Developer with 2+ years of expertise in React JS, Next.js, TypeScript, and JavaScript.",
+    description: "React.js Developer with 2+ years of experience in scalable frontend systems, responsive UI, and performance optimization.",
     creator: "@DipenPanchasara",
     images: ["/og-image.jpg"],
   },
@@ -90,6 +89,7 @@ export default function RootLayout({ children }) {
               url: "https://dipenpanchasara.dev",
               sameAs: [
                 "https://www.linkedin.com/in/DipenPanchasara",
+                "https://leetcode.com/",
               ],
               address: {
                 "@type": "PostalAddress",
@@ -118,7 +118,9 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className="antialiased">
-        {children}
+        <SmoothScroll>
+          {children}
+        </SmoothScroll>
       </body>
     </html>
   );
