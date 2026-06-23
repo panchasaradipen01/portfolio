@@ -139,7 +139,7 @@ export default function Contact() {
                   {item.icon}
                 </div>
                 <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-slate-400">{item.type}</p>
-                <p className="text-base font-semibold text-slate-900 transition-colors duration-350 group-hover:text-teal-700 md:text-lg">
+                <p className="text-base font-semibold text-slate-900 transition-colors duration-350 group-hover:text-teal-700 md:text-lg break-all">
                   {item.value}
                 </p>
               </motion.a>
