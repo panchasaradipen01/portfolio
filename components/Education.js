@@ -27,7 +27,7 @@ export default function Education() {
             <div>
               <h3 className="font-heading text-2xl font-bold text-slate-950 md:text-3xl">{education.degree}</h3>
               <p className="mt-3 text-lg font-semibold text-slate-700 md:text-xl">{education.institution}</p>
-              <p className="mt-1.5 text-base font-medium text-slate-500">{education.location}</p>
+              <p className="mt-1.5 text-base font-semibold text-slate-600">{education.location}</p>
             </div>
             
             <motion.div 

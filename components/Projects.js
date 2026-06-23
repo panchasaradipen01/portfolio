@@ -32,7 +32,7 @@ export default function Projects() {
           >
             <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
               <div>
-                <p className="text-sm uppercase tracking-[0.24em] text-slate-500">Case study</p>
+                <p className="text-sm uppercase tracking-[0.24em] text-slate-600 font-semibold">Case study</p>
                 <h3 className="mt-3 font-heading text-2xl font-bold text-slate-950 md:text-3xl">
                   {project.name}
                 </h3>

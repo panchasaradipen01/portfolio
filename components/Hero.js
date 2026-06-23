@@ -2,8 +2,21 @@
 
 import { resumeData } from "@/data/resume";
 import DownloadPDF from "./DownloadPDF";
-import HeroCanvas3D from "./HeroCanvas3D";
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
+
+const HeroCanvas3D = dynamic(() => import("./HeroCanvas3D"), {
+  ssr: false,
+  loading: () => (
+    <div className="relative h-[320px] w-full flex items-center justify-center text-slate-400 md:h-[450px] pointer-events-none">
+      <div className="flex flex-col items-center gap-3">
+        <span className="h-6 w-6 rounded-full border-2 border-teal-600/20 border-t-teal-600 animate-spin" />
+        <span className="text-[10px] uppercase tracking-[0.2em] text-slate-400 font-bold">Initializing Sandbox...</span>
+      </div>
+    </div>
+  )
+});
+
 
 export default function Hero() {
   const { personalInfo } = resumeData;
@@ -96,7 +109,7 @@ export default function Hero() {
                   className="rounded-[24px] border border-slate-900/10 bg-white/70 px-4 py-4 backdrop-blur cursor-default"
                 >
                   <p className="font-heading text-3xl font-bold text-slate-950">{stat.value}</p>
-                  <p className="mt-1.5 text-xs font-medium leading-5 text-slate-500 uppercase tracking-wider">{stat.label}</p>
+                  <p className="mt-1.5 text-xs font-semibold leading-5 text-slate-600 uppercase tracking-wider">{stat.label}</p>
                 </motion.div>
               ))}
             </motion.div>

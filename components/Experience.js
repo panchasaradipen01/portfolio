@@ -45,7 +45,7 @@ export default function Experience() {
                   <p className="text-base font-semibold text-slate-800 md:text-lg">
                     {exp.startDate} - {exp.endDate}
                   </p>
-                  <p className="mt-1 text-sm text-slate-500 md:text-base font-medium">{exp.location}</p>
+                  <p className="mt-1 text-sm text-slate-600 md:text-base font-semibold">{exp.location}</p>
                 </div>
               </div>
 

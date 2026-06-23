@@ -72,7 +72,7 @@ export default function RootLayout({ children }) {
     <html lang="en" className="scroll-smooth">
       <head>
         <link rel="canonical" href="https://dipenpanchasara.dev" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <meta name="theme-color" content="#0f172a" />
         <script
           type="application/ld+json"
