@@ -16,9 +16,9 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="section-block text-center">
+    <section id="contact" className="section-block">
       <div className="wrap">
-        <div className="section-heading mx-auto text-center mb-10">
+        <div className="section-heading mb-10">
           <div className="eyebrow">~/contact</div>
           <KineticText
             text="Let's build something."
@@ -28,11 +28,11 @@ export default function Contact() {
         </div>
 
         <ScrollReveal direction="up" distance={45} delay={0.12} duration={0.9} blur={2}>
-          <p className="font-heading font-normal text-[clamp(1.8rem,4vw,3.2rem)] max-w-[18ch] mx-auto mb-8.5 text-[var(--text)] leading-tight">
-            Open to full-stack &amp; frontend roles — reach me at<br />
+          <p className="font-heading font-normal text-[clamp(1.7rem,3.5vw,3rem)] max-w-[24ch] mb-8.5 text-[var(--text)] leading-tight">
+            Open to full-stack &amp; frontend roles — reach me at{" "}
             <a
               href={`mailto:${personalInfo.contact.email}`}
-              className="text-[var(--accent)] border-b border-[var(--accent)]/30 hover:border-[var(--accent)] transition-colors"
+              className="text-[var(--accent)] border-b border-[var(--accent)]/30 hover:border-[var(--accent)] transition-colors break-all sm:break-normal"
             >
               {personalInfo.contact.email}
             </a>
@@ -40,7 +40,7 @@ export default function Contact() {
         </ScrollReveal>
 
         <ScrollReveal direction="up" distance={30} delay={0.24} duration={0.8}>
-          <div className="flex justify-center gap-3.5 flex-wrap mb-15">
+          <div className="flex items-center gap-3.5 flex-wrap mb-15">
             <a className="btn solid" href={`mailto:${personalInfo.contact.email}`}>
               Send an email
             </a>
@@ -48,7 +48,7 @@ export default function Contact() {
           </div>
         </ScrollReveal>
 
-        <div className="flex justify-center gap-6 sm:gap-8 flex-wrap font-mono text-[0.8rem] text-[var(--text-dim)]">
+        <div className="flex items-center gap-6 sm:gap-8 flex-wrap font-mono text-[0.8rem] text-[var(--text-dim)]">
           {socialLinks.map((link, idx) => (
             <ScrollReveal
               key={link.label}
