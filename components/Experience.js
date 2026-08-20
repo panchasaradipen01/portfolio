@@ -1,116 +1,81 @@
 "use client";
 
 import { resumeData } from "@/data/resume";
-import { motion } from "framer-motion";
 import ScrollReveal from "./ScrollReveal";
+import KineticText from "./KineticText";
 
 export default function Experience() {
   const { experience } = resumeData;
 
   return (
-    <section id="experience" className="section-shell section-block">
-      <ScrollReveal direction="up" duration={0.8}>
+    <section id="experience" className="section-block">
+      <div className="wrap">
         <div className="section-heading">
-          <div className="eyebrow">Experience</div>
-          <h2 className="font-heading text-4xl font-bold tracking-tight text-slate-950 md:text-5xl">
-            Product work across fast-moving teams
-          </h2>
+          <div className="eyebrow">~/experience</div>
+          <KineticText
+            text="Where I've built things."
+            as="h2"
+            className="font-heading font-semibold text-[var(--text)] tracking-tight text-[clamp(2rem,4vw,3rem)]"
+          />
         </div>
-      </ScrollReveal>
 
-      <div className="relative space-y-6">
-        <div className="pointer-events-none absolute bottom-0 left-4 top-0 hidden w-px bg-gradient-to-b from-teal-700/0 via-teal-700/20 to-orange-700/0 md:block" />
-        
-        {experience.map((exp, index) => (
-          <ScrollReveal
-            key={`${exp.company}-${index}`}
-            direction="left"
-            delay={index * 0.1}
-            duration={0.8}
-          >
-            <motion.div
-              whileHover={{ y: -5, scale: 1.005, boxShadow: "0 30px 70px -25px rgba(15,23,42,0.18)" }}
-              transition={{ type: "spring", stiffness: 400, damping: 25 }}
-              className="panel relative p-6 md:ml-10 md:p-10 bg-white/70 backdrop-blur-md cursor-default"
-            >
-              {/* Timeline bubble */}
-              <div className="absolute -left-[2.8rem] top-10 hidden h-4 w-4 rounded-full border-4 border-[#f6f1e8] bg-teal-700 shadow-[0_0_0_6px_rgba(15,118,110,0.14)] md:block" />
-              
-              <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-                <div>
-                  <h3 className="font-heading text-2xl font-bold text-slate-950 md:text-3xl">{exp.role}</h3>
-                  <p className="mt-2 text-lg font-semibold text-slate-700 md:text-xl">{exp.company}</p>
-                </div>
-                <div className="md:text-right">
-                  <p className="text-base font-semibold text-slate-800 md:text-lg">
-                    {exp.startDate} - {exp.endDate}
-                  </p>
-                  <p className="mt-1 text-sm text-slate-600 md:text-base font-semibold">{exp.location}</p>
-                </div>
-              </div>
+        <div className="relative max-w-[820px] ml-1 sm:ml-2">
+          {/* Vertical Timeline Stem */}
+          <div className="absolute left-[7px] top-[6px] bottom-[6px] w-[1px] bg-[var(--border)]" />
 
-              {exp.projects ? (
-                <div className="space-y-5">
-                  {exp.projects.map((project, projectIndex) => (
-                    <div
-                      key={`${project.name}-${projectIndex}`}
-                      className="rounded-[24px] border border-slate-900/10 bg-white/65 p-5 md:p-6"
-                    >
-                      <h4 className="font-heading text-xl font-semibold text-slate-900 md:text-2xl">
-                        {project.name}
-                      </h4>
-                      <p className="mb-4 mt-3 text-base leading-7 text-slate-600 md:text-lg">{project.description}</p>
-                      <ul className="ml-5 list-disc space-y-2 text-sm text-slate-700 md:text-base">
-                        {project.responsibilities.map((responsibility, respIndex) => (
-                          <li key={respIndex} className="leading-7">{responsibility}</li>
-                        ))}
-                      </ul>
-                      <div className="mt-5 flex flex-wrap gap-2.5">
-                        {project.technologies.map((tech) => (
-                          <span
-                            key={tech}
-                            className="pill"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <div>
-                  <ul className="ml-5 list-disc space-y-3 text-sm text-slate-700 md:text-base">
-                    {exp.responsibilities.map((responsibility, respIndex) => (
-                      <motion.li 
-                        key={respIndex} 
-                        initial={{ opacity: 0, x: -10 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.1 + respIndex * 0.08 }}
-                        className="leading-7 marker:text-teal-700"
-                      >
-                        {responsibility}
-                      </motion.li>
+          <div className="space-y-12">
+            {experience.map((exp, index) => (
+              <ScrollReveal
+                key={`${exp.company}-${index}`}
+                direction={index % 2 === 0 ? "left" : "right"}
+                distance={45}
+                delay={index * 0.12}
+                duration={0.9}
+                blur={3}
+              >
+                <div className="relative pl-11 group">
+                  {/* Timeline Dot */}
+                  <div className="absolute left-0 top-[5px] w-[15px] h-[15px] rounded-full bg-[var(--bg)] border-2 border-[var(--text-faint)] group-hover:border-[var(--accent)] group-hover:bg-[var(--accent-soft)] group-hover:scale-125 transition-all duration-300 shadow-sm" />
+
+                  {/* Header info */}
+                  <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1 mb-1.5">
+                    <span className="font-heading text-[1.24rem] font-semibold text-[var(--text)] group-hover:text-[var(--accent)] transition-colors">
+                      {exp.role}
+                    </span>
+                    <span className="font-mono text-[0.72rem] text-[var(--text-faint)]">
+                      {exp.startDate} – {exp.endDate}
+                    </span>
+                  </div>
+
+                  {/* Company & Location */}
+                  <div className="text-[var(--accent)] text-[0.92rem] mb-3.5 font-medium flex items-center gap-2">
+                    <span>{exp.company}, {exp.location}</span>
+                  </div>
+
+                  {/* Responsibilities list */}
+                  <ul className="m-0 pl-4 space-y-2 text-[var(--text-dim)] list-disc marker:text-[var(--accent)]">
+                    {exp.responsibilities.map((item, idx) => (
+                      <li key={idx} className="text-[0.98rem] leading-relaxed">
+                        {item}
+                      </li>
                     ))}
                   </ul>
-                  <div className="mt-6 flex flex-wrap gap-2.5">
-                    {exp.technologies.map((tech) => (
-                      <motion.span
-                        key={tech}
-                        whileHover={{ y: -3, scale: 1.05, borderColor: "rgba(15, 118, 110, 0.4)", color: "#0f766e" }}
-                        transition={{ type: "spring", stiffness: 500, damping: 15 }}
-                        className="pill cursor-default hover:bg-white"
-                      >
-                        {tech}
-                      </motion.span>
-                    ))}
-                  </div>
+
+                  {/* Tech stack used in this role */}
+                  {exp.technologies && (
+                    <div className="flex flex-wrap gap-1.5 mt-3.5 pl-4">
+                      {exp.technologies.map((tech) => (
+                        <span key={tech} className="font-mono text-[0.68rem] text-[var(--text-faint)] border border-[var(--border)] px-2 py-0.5 rounded bg-[var(--surface)]">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                 </div>
-              )}
-            </motion.div>
-          </ScrollReveal>
-        ))}
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

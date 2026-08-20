@@ -1,20 +1,24 @@
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
+import { resumeData } from "@/data/resume";
 
 export const metadata = {
-  title: "Dipen Panchasara - React.js Developer | Frontend Portfolio",
-  description: "React.js Developer with 2+ years of experience building scalable web applications, responsive UI, and performance-focused frontend systems with Next.js, TypeScript, and JavaScript.",
+  title: "Dipen Panchasara — MERN Stack & Frontend Engineer",
+  description:
+    "Dipen Panchasara — MERN Stack Developer with 3+ years experience building AI-integrated, full-stack web applications using React.js, Next.js, Node.js, and TypeScript.",
   keywords: [
+    "Dipen Panchasara",
+    "MERN Stack Developer",
+    "Full Stack Developer",
     "Frontend Developer",
-    "React JS Developer",
+    "React.js Developer",
     "Next.js Developer",
     "TypeScript Developer",
-    "JavaScript Developer",
-    "Web Developer",
-    "UI/UX Developer",
-    "Frontend Engineer",
-    "Ahmedabad Developer",
-    "India Developer",
+    "Node.js Developer",
+    "AI Integration",
+    "Gemini AI",
+    "Bengaluru Developer",
+    "India",
   ],
   authors: [{ name: "Dipen Panchasara" }],
   creator: "Dipen Panchasara",
@@ -29,89 +33,94 @@ export const metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "Dipen Panchasara - Software Engineer | Frontend Developer",
-    description: "React.js Developer with 2+ years of experience in scalable frontend systems, responsive UI, and performance optimization.",
+    title: "Dipen Panchasara — MERN Stack & Frontend Engineer",
+    description:
+      "MERN Stack Developer with 3+ years experience building scalable, responsive web applications and AI integrations.",
     url: "https://dipenpanchasara.dev",
     siteName: "Dipen Panchasara Portfolio",
     locale: "en_US",
     type: "website",
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Dipen Panchasara - Frontend Developer",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Dipen Panchasara - Software Engineer | Frontend Developer",
-    description: "React.js Developer with 2+ years of experience in scalable frontend systems, responsive UI, and performance optimization.",
-    creator: "@DipenPanchasara",
-    images: ["/og-image.jpg"],
+    title: "Dipen Panchasara — MERN Stack & Frontend Engineer",
+    description:
+      "MERN Stack Developer with 3+ years experience building scalable, responsive web applications and AI integrations.",
   },
   robots: {
     index: true,
     follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
-  verification: {
-    google: "your-google-verification-code",
   },
 };
 
 export default function RootLayout({ children }) {
+  const { personalInfo } = resumeData;
+
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth" data-theme="dark" suppressHydrationWarning>
       <head>
         <link rel="canonical" href="https://dipenpanchasara.dev" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        <meta name="theme-color" content="#0f172a" />
+        <meta name="theme-color" content="#0B0F14" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+          rel="stylesheet"
+        />
+        {/* Prevent theme flash */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var saved = localStorage.getItem('theme');
+                  var pref = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+                  var theme = saved ? saved : pref;
+                  document.documentElement.setAttribute('data-theme', theme);
+                } catch(e) {}
+              })();
+            `,
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Person",
-              name: "Dipen Panchasara",
-              jobTitle: "Software Engineer (Frontend Developer)",
+              name: personalInfo.name,
+              jobTitle: personalInfo.title,
               description:
-                "Experienced frontend developer with expertise in React JS, TypeScript and JavaScript.",
-              email: "panchasaradipen01@gmail.com",
-              telephone: "+91-9714241758",
+                "MERN Stack Developer with 3+ years experience building scalable web applications and AI integrations.",
+              email: personalInfo.contact.email,
+              telephone: personalInfo.contact.phone,
               url: "https://dipenpanchasara.dev",
               sameAs: [
-                "https://www.linkedin.com/in/DipenPanchasara",
-                "https://leetcode.com/",
+                personalInfo.contact.linkedin,
+                personalInfo.contact.leetcode,
+                personalInfo.contact.github,
               ],
               address: {
                 "@type": "PostalAddress",
-                addressLocality: "Ahmedabad",
+                addressLocality: "Bengaluru",
                 addressCountry: "IN",
               },
               alumniOf: {
                 "@type": "EducationalOrganization",
                 name: "B.H. Gardi College of Engineering & Technology",
-                address: {
-                  "@type": "PostalAddress",
-                  addressLocality: "Rajkot",
-                  addressCountry: "IN",
-                },
               },
               knowsAbout: [
-                "React JS",
+                "React.js",
                 "Next.js",
+                "Node.js",
+                "Express.js",
+                "MongoDB",
                 "TypeScript",
                 "JavaScript",
-                "Frontend Development",
-                "Web Development",
+                "Gemini AI",
+                "GraphQL",
+                "Full Stack Development",
               ],
             }),
           }}

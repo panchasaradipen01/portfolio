@@ -10,19 +10,18 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen overflow-hidden text-slate-900">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-[34rem] bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.86),transparent_60%)]" />
-      <div className="pointer-events-none absolute left-[6%] top-28 h-28 w-28 rounded-full border border-white/60 bg-white/40 blur-2xl animate-drift" />
-      <div className="pointer-events-none absolute right-[8%] top-[28rem] h-40 w-40 rounded-full bg-teal-200/25 blur-3xl animate-drift" />
-      <div className="pointer-events-none absolute bottom-32 left-[10%] h-32 w-32 rounded-full bg-orange-200/20 blur-3xl animate-float-slow" />
+    <div className="relative min-h-screen bg-[var(--bg)] text-[var(--text)] transition-colors duration-400">
+      {/* Glass Screen Transition Wipe Overlay (§4) */}
+      <div id="glass-wipe-overlay" className="glass-wipe-overlay" />
+
       <Navigation />
       <main className="relative z-10">
         <Hero />
         <About />
         <Skills />
         <Experience />
-        <Education />
         <Projects />
+        <Education />
         <Contact />
       </main>
       <Footer />

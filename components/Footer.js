@@ -1,13 +1,10 @@
 export default function Footer() {
   return (
-    <footer className="mt-10 border-t border-black/5">
-      <div className="section-shell py-8 text-center">
-        <p className="text-sm text-slate-600 font-medium">
-          Copyright {new Date().getFullYear()} Dipen Panchasara. All rights reserved.
-        </p>
+    <footer className="border-t border-[#232C38] py-7">
+      <div className="wrap flex justify-between items-center flex-wrap gap-2.5 font-mono text-[0.7rem] text-[#5C6773]">
+        <span>© {new Date().getFullYear()} Dipen Panchasara</span>
+        <span>Built with Next.js, Tailwind CSS &amp; Three.js</span>
       </div>
     </footer>
   );
 }
-
-

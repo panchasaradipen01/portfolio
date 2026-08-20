@@ -1,94 +1,131 @@
 "use client";
 
 import { resumeData } from "@/data/resume";
-import { motion } from "framer-motion";
 import ScrollReveal from "./ScrollReveal";
+import KineticText from "./KineticText";
 
 export default function Skills() {
   const { skills } = resumeData;
 
-  const skillCategories = [
-    { title: "Languages", items: skills.languages },
-    { title: "Frontend", items: skills.frontend },
-    { title: "Web", items: skills.web },
-    { title: "Testing", items: skills.testing },
-    { title: "Tools", items: skills.tools },
-    { title: "Other", items: skills.other },
+  const stackCategories = [
+    {
+      title: "Frontend / MERN",
+      featured: "React.js",
+      items: skills.frontend,
+      delay: 0,
+      direction: "left",
+    },
+    {
+      title: "Backend & Data",
+      featured: "Node.js",
+      items: [
+        "Express.js",
+        "GraphQL (Apollo)",
+        "REST APIs",
+        "MongoDB",
+        "Mongoose",
+        "PostgreSQL",
+        "Prisma ORM",
+        "BullMQ / Redis",
+        "MySQL",
+      ],
+      delay: 0.08,
+      direction: "up",
+    },
+    {
+      title: "Auth, Cloud & AI",
+      featured: "Gemini AI",
+      items: [
+        "JWT",
+        "OAuth 2.0",
+        "NextAuth",
+        "RBAC",
+        "AWS S3",
+        "Vercel",
+        "Netlify",
+        "Sentry",
+        "Prompt Engineering",
+        "LLM Apps",
+        "PDF Parsing",
+      ],
+      delay: 0.16,
+      direction: "up",
+    },
+    {
+      title: "Tooling & Testing",
+      featured: "TypeScript",
+      items: [
+        "Git",
+        "GitHub",
+        "Postman",
+        "Vite",
+        "Webpack",
+        "Jest",
+        "Playwright",
+        "Mocha",
+        "CI/CD",
+        "Agile/Scrum",
+        "Python",
+      ],
+      delay: 0.24,
+      direction: "right",
+    },
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { type: "spring", stiffness: 100, damping: 15 },
-    },
-  };
-
   return (
-    <section id="skills" className="section-shell section-block">
-      <ScrollReveal direction="up" duration={0.8}>
+    <section id="stack" className="section-block">
+      <div className="wrap">
         <div className="section-heading">
-          <div className="eyebrow">Skills</div>
-          <h2 className="font-heading text-4xl font-bold tracking-tight text-slate-950 md:text-5xl">
-            The toolkit behind reliable product UI
-          </h2>
+          <div className="eyebrow">~/stack</div>
+          <KineticText
+            text="Tools I reach for."
+            as="h2"
+            className="font-heading font-semibold text-[var(--text)] tracking-tight text-[clamp(2rem,4vw,3rem)]"
+          />
+          <ScrollReveal direction="up" delay={0.1} duration={0.8}>
+            <p>
+              A working set built across production roles and side projects — from component-level UI work to background job queues and AI integrations.
+            </p>
+          </ScrollReveal>
         </div>
-      </ScrollReveal>
 
-      <motion.div 
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        className="grid gap-6 md:grid-cols-2 xl:grid-cols-3"
-      >
-        {skillCategories.map((category, index) => (
-          <motion.div
-            key={category.title}
-            variants={cardVariants}
-            whileHover={{ y: -8, boxShadow: "0 30px 60px -20px rgba(15,23,42,0.18)" }}
-            className={`grid-card flex flex-col justify-between ${
-              index % 3 === 0
-                ? "bg-[linear-gradient(180deg,rgba(255,255,255,0.88),rgba(226,248,245,0.72))]"
-                : index % 3 === 1
-                  ? "bg-[linear-gradient(180deg,rgba(255,255,255,0.88),rgba(255,239,229,0.72))]"
-                  : "bg-[linear-gradient(180deg,rgba(255,255,255,0.88),rgba(232,239,255,0.72))]"
-            }`}
-          >
-            <div>
-              <h3 className="mb-5 flex items-center gap-3 font-heading text-xl font-semibold text-slate-950 md:text-2xl">
-                <span className="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-slate-950 text-xs font-bold text-white shadow-[0_12px_30px_-18px_rgba(15,23,42,0.65)]">
-                  {category.title.charAt(0)}
-                </span>
-                {category.title}
-              </h3>
-              <div className="flex flex-wrap gap-2.5">
-                {category.items.map((skill) => (
-                  <motion.span
-                    key={skill}
-                    whileHover={{ y: -3, scale: 1.05, borderColor: "rgba(15, 118, 110, 0.4)", color: "#0f766e" }}
-                    transition={{ type: "spring", stiffness: 500, damping: 15 }}
-                    className="pill hover:bg-white cursor-default"
-                  >
-                    {skill}
-                  </motion.span>
-                ))}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[2px] bg-[var(--border)] border border-[var(--border)]">
+          {stackCategories.map((cat) => (
+            <ScrollReveal
+              key={cat.title}
+              direction={cat.direction}
+              distance={40}
+              delay={cat.delay}
+              duration={0.9}
+              blur={2}
+            >
+              <div className="bg-[var(--bg)] p-7 h-full flex flex-col group hover:bg-[var(--bg-alt)] transition-colors duration-300">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="font-mono text-[0.78rem] text-[var(--accent)] uppercase tracking-wider font-medium">
+                    {cat.title}
+                  </h3>
+                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)]/40 group-hover:bg-[var(--accent)] transition-colors" />
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {/* Featured core strength chip with animated conic gradient border (§6) */}
+                  {cat.featured && (
+                    <span className="chip chip-featured text-[var(--accent)] font-semibold shadow-sm">
+                      ★ {cat.featured}
+                    </span>
+                  )}
+                  {cat.items
+                    .filter((item) => item !== cat.featured)
+                    .map((item) => (
+                      <span key={item} className="chip">
+                        {item}
+                      </span>
+                    ))}
+                </div>
               </div>
-            </div>
-          </motion.div>
-        ))}
-      </motion.div>
+            </ScrollReveal>
+          ))}
+        </div>
+      </div>
     </section>
   );
 }

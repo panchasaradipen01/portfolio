@@ -1,49 +1,45 @@
 "use client";
 
 import { resumeData } from "@/data/resume";
-import { motion } from "framer-motion";
 import ScrollReveal from "./ScrollReveal";
+import KineticText from "./KineticText";
 
 export default function Education() {
   const { education } = resumeData;
 
   return (
-    <section id="education" className="section-shell section-block">
-      <ScrollReveal direction="up" duration={0.8}>
+    <section id="education" className="section-block">
+      <div className="wrap">
         <div className="section-heading">
-          <div className="eyebrow">Education</div>
-          <h2 className="font-heading text-4xl font-bold tracking-tight text-slate-950 md:text-5xl">
-            Strong academic grounding in software systems
-          </h2>
+          <div className="eyebrow">~/education</div>
+          <KineticText
+            text="Academic background."
+            as="h2"
+            className="font-heading font-semibold text-[var(--text)] tracking-tight text-[clamp(2rem,4vw,3rem)]"
+          />
         </div>
-      </ScrollReveal>
 
-      <ScrollReveal direction="up" delay={0.15} duration={0.8}>
-        <motion.div 
-          whileHover={{ y: -5, boxShadow: "0 30px 70px -25px rgba(15,23,42,0.18)" }}
-          className="panel p-6 md:p-10 cursor-default bg-white/70 backdrop-blur-md"
-        >
-          <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+        <ScrollReveal direction="up" distance={40} scale={0.97} delay={0.12} duration={0.9} blur={2}>
+          <div className="flex justify-between items-start flex-wrap gap-5 border border-[var(--border)] p-8 rounded-[6px] bg-[var(--surface)] hover:border-[var(--accent)]/40 transition-all duration-300 hover:shadow-[0_15px_40px_-15px_var(--accent-soft)] group">
             <div>
-              <h3 className="font-heading text-2xl font-bold text-slate-950 md:text-3xl">{education.degree}</h3>
-              <p className="mt-3 text-lg font-semibold text-slate-700 md:text-xl">{education.institution}</p>
-              <p className="mt-1.5 text-base font-semibold text-slate-600">{education.location}</p>
+              <h3 className="text-[1.2rem] font-semibold text-[var(--text)] mb-1.5 font-heading group-hover:text-[var(--accent)] transition-colors">
+                {education.degree}
+              </h3>
+              <p className="text-[var(--text-dim)] m-0 text-[0.95rem]">
+                {education.institution} · {education.startDate} – {education.endDate}
+              </p>
             </div>
-            
-            <motion.div 
-              whileHover={{ scale: 1.03 }}
-              className="rounded-[24px] border border-slate-900/10 bg-white/70 px-6 py-5 md:text-right shadow-sm"
-            >
-              <p className="font-heading text-2xl font-bold text-teal-700 md:text-3xl">
-                CGPA: {education.cgpa}
-              </p>
-              <p className="mt-2 text-base font-semibold text-slate-650 md:text-lg">
-                {education.startDate} - {education.endDate}
-              </p>
-            </motion.div>
+            <div className="text-right">
+              <b className="font-heading text-[1.6rem] text-[var(--accent)] block font-semibold group-hover:scale-105 transition-transform origin-right">
+                {education.cgpa}
+              </b>
+              <span className="font-mono text-[0.68rem] text-[var(--text-faint)] uppercase tracking-wider">
+                CGPA
+              </span>
+            </div>
           </div>
-        </motion.div>
-      </ScrollReveal>
+        </ScrollReveal>
+      </div>
     </section>
   );
 }
